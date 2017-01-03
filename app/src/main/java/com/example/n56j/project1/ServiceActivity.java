@@ -3,6 +3,7 @@ package com.example.n56j.project1;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,6 +13,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ServiceActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -43,13 +47,29 @@ public class ServiceActivity extends FragmentActivity implements OnMapReadyCallb
 
 
 
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-    }//main metton
+
+        listViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ServiceActivity.this, MyListView.class));
+            }
+        });
 
 
+    }//main mettod
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        myCreateMarker();
+
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -57,5 +77,47 @@ public class ServiceActivity extends FragmentActivity implements OnMapReadyCallb
         LatLng latLng = new LatLng(latPbruADouble, lngPbruADouble);
         // setup pbru center
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+
+        myCreateMarker();
+
+
     }//second
+
+    private void myCreateMarker() {
+
+        try {
+
+            mMap.clear();
+
+            SynRoom synRoom = new SynRoom(ServiceActivity.this);
+            synRoom.execute();
+            String strJSON = synRoom.get();
+            Log.d("3janV1", "JSON ==>" + strJSON);
+
+            JSONArray jsonArray = new JSONArray(strJSON);
+
+            String[] nameRoomString = new String[jsonArray.length()];
+            String[] latStrings = new String[jsonArray.length()];
+            String[] lngStrings = new String[jsonArray.length()];
+
+            for (int i=0;i<jsonArray.length();i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                nameRoomString[i] = jsonObject.getString("room_name");
+                latStrings[i] = jsonObject.getString("room_lat");
+                lngStrings[i] = jsonObject.getString("room_long");
+
+
+                LatLng latLng = new LatLng(Double.parseDouble(latStrings[i]),
+                        Double.parseDouble(lngStrings[i]));
+
+                mMap.addMarker(new MarkerOptions().position(latLng).title(nameRoomString[i]));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }//main
