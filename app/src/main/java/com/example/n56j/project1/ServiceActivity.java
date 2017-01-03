@@ -17,7 +17,7 @@ public class ServiceActivity extends FragmentActivity implements OnMapReadyCallb
 
 
     private GoogleMap mMap;
-    private double latPbruADouble = 13.071865;
+    private double latPbruADouble = 13.071865; //pbru location
     private double lngPbruADouble = 99.976742;
     private Button listViewButton, addMarkerButton;
 

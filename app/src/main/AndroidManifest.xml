@@ -49,8 +49,7 @@
         <activity
             android:name=".AddEditActivity"
             android:label="@string/title_activity_add_edit" />
-        <activity android:name=".MyManage" />
-        <activity android:name=".MyOpenHelper"></activity>
+
     </application>
 
 </manifest>

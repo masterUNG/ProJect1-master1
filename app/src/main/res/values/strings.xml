@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Where PBRU</string>
     <string name="Search">ค้นหา</string>
     <string name="Build">โปรดระบุหมายเลขห้อง</string>
     <string name="Name">ชื่อ</string>

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Intent nextPage = new Intent(MainActivity.this,ActivityAdmin.class);
         nextPage.putExtra("PARAM", "Every man fight his own wars");
         startActivity(nextPage);
-    }
+    } // button1onclick
     public void buttom8onClick(View v) {
         userString = userEditText.getText().toString().trim();
         passwordString = passwordEditText.getText().toString().trim();
