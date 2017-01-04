@@ -31,6 +31,7 @@
     <string name="edit">แก้ไขข้อมูล</string>
     <string name="de">ลบข้อมูล</string>
     <string name="Black">กลับไปหน้าเดิม</string>
+    <string name="title_activity_edit_data">Map</string>
 
 
 </resources>

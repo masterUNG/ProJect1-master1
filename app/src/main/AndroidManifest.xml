@@ -51,7 +51,10 @@
             android:name=".AddEditActivity"
             android:label="@string/title_activity_add_edit" />
         <activity android:name=".MyListView" />
-        <activity android:name=".ShowDetail"></activity>
+        <activity android:name=".ShowDetail" />
+        <activity
+            android:name=".EditData"
+            android:label="@string/title_activity_edit_data"></activity>
     </application>
 
 </manifest>
