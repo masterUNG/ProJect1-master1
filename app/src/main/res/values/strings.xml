@@ -28,6 +28,9 @@
     <string name="title_activity_service">Map</string>
     <string name="title_activity_add_edit">Map</string>
     <string name="user">ชื่อผู้ใช้</string>
+    <string name="edit">แก้ไขข้อมูล</string>
+    <string name="de">ลบข้อมูล</string>
+    <string name="Black">กลับไปหน้าเดิม</string>
 
 
 </resources>

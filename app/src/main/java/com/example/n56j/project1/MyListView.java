@@ -1,8 +1,11 @@
 package com.example.n56j.project1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -26,7 +29,7 @@ public class MyListView extends AppCompatActivity {
             Log.d("3janV2", "JSON ==>" + strJSON);
 
             JSONArray jsonArray = new JSONArray(strJSON);
-            String[] nameRoomStrings = new String[jsonArray.length()];
+            final String[] nameRoomStrings = new String[jsonArray.length()];
             String[] typeStrings = new String[jsonArray.length()];
             String[] numberRoomStrings = new String[jsonArray.length()];
             String[] imageStrings = new String[jsonArray.length()];
@@ -46,6 +49,15 @@ public class MyListView extends AppCompatActivity {
             MyAdapter myAdapter = new MyAdapter(MyListView.this, nameRoomStrings,
                     typeStrings, numberRoomStrings, imageStrings);
             listView.setAdapter(myAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(MyListView.this, ShowDetail.class);
+                    intent.putExtra("NameRoom", nameRoomStrings[i]);
+                    startActivity(intent);
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
