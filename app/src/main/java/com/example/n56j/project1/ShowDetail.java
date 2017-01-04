@@ -1,8 +1,9 @@
 package com.example.n56j.project1;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ShowDetail extends AppCompatActivity {
+public class ShowDetail extends AppCompatActivity implements View.OnClickListener {
 
     //Explicit
     private String nameRoomString, imageString,typeString,
@@ -19,6 +20,7 @@ public class ShowDetail extends AppCompatActivity {
     private ImageView imageView;
     private TextView  nameRoomTextView , typeTextView  , numberTextView,
             pathImageTextView, latTextView, lngTextView;
+    private Button edtiButton, deleteButton, backButton;
 
 
 
@@ -68,6 +70,11 @@ public class ShowDetail extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+        edtiButton.setOnClickListener(this);
+        deleteButton.setOnClickListener(this);
+        backButton.setOnClickListener(this);
+
     }   // Main Method
 
     private void bindWidget() {
@@ -78,11 +85,25 @@ public class ShowDetail extends AppCompatActivity {
         numberTextView = (TextView) findViewById(R.id.textView6);
         latTextView = (TextView) findViewById(R.id.textView10);
         lngTextView = (TextView) findViewById(R.id.textView11);
-
-
-
+        edtiButton = (Button) findViewById(R.id.button4);
+        deleteButton = (Button) findViewById(R.id.button18);
+        backButton = (Button) findViewById(R.id.button19);
 
 
     }
 
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.button4:
+                break;
+            case R.id.button18:
+                break;
+            case R.id.button19:
+                finish();
+                break;
+        }
+
+    }
 }   // Main Class
